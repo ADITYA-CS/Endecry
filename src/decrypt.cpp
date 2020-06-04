@@ -21,27 +21,27 @@ using namespace std;
  * @param output_file Address of output file
  */
 
-void Decryption(const string &algorithm,
-                const string &input_file,
-                const string &output_file)
+void Decryption(const string &algorithm)
 {
 
+    auto input_file  = GetInputFile();
+    auto output_file = GetOutputFile(input_file);
     ifstream in(input_file);    // input stream
     ofstream out(output_file);  // output stream
 
     if(!in || !out)
     {
         PrintCannotOpenFile();
-        return;;
+        return;
     }
 
-    if(algorithm == "caesar")
+    if(algorithm == "caesar" || algorithm == "CAESAR" || algorithm == "Caesar")
         CaeserCipherDecode(in, out);
-    else if(algorithm == "shift")
+    else if(algorithm == "shift" || algorithm == "SHIFT" || algorithm == "Shift")
         ShiftCipherDecode(in,out);
-    else if(algorithm == "XOR")
+    else if(algorithm == "XOR" || algorithm == "Xor" || algorithm == "xor")
         XorCipherDecode(in, out);
-    else if(algorithm == "vigenere")
+    else if(algorithm == "vigenere" || algorithm == "VIGENERE" || algorithm == "Vigenere")
         VigenereCipherDecode(in,out);
 }
 

@@ -14,14 +14,17 @@
 
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 #include "utility.h"
 #include "cipher/caesar.h"
 #include "cipher/xor.h"
 #include "cipher/vigenere.h"
 
+namespace fs = std::filesystem;
+
 using namespace  std;
 
-void Decryption(const string &,const string &, const string &);
+void Decryption(const string &);
 void CaeserCipherDecode(ifstream &, ofstream &);
 void ShiftCipherDecode(ifstream &, ofstream &);
 void XorCipherDecode(ifstream &, ofstream &);

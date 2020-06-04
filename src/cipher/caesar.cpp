@@ -17,7 +17,7 @@
  * set modular_ to 26
  * @param n integer key for shift cipher, n = 3 in case of caesar cipher
  */
-Caeser :: Caeser(int n) : offset_(n), modular_(26){}
+Caeser :: Caeser(int n) : offset_(n % 26), modular_(26){}
 
 /**
  * @brief Encryption function

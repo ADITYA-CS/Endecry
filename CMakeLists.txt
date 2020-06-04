@@ -17,4 +17,4 @@ add_executable(endecry src/main.cpp
         src/cipher/vigenere.cpp
         src/cipher/vigenere.h
         src/cipher/xor.cpp
-        src/cipher/xor.h src/hash/sha-1.cpp src/hash/sha-1.h src/hash/md2.h src/hash/md2.cpp src/hash.cpp src/hash.h)
+        src/cipher/xor.h src/hash/md2.h src/hash/md2.cpp src/hash.cpp src/hash.h src/cipher/DES.cpp src/cipher/DES.h)

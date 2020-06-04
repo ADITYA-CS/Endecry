@@ -11,16 +11,20 @@
 #define ENDECRY_UTILITY_H
 
 #include <iostream>
+#include <fstream>
+#include <filesystem>
+namespace fs = std::filesystem;
 using namespace std;
 
 void    ErrorMessage();
 void    PrintAlgorithmOption();
+void    PrintError();
 void    PrintCannotOpenFile();
 void    PrintHelpPage();
-int     StringToInt(string);
+int     StringToInt(const string&);
 char    TaskToPerform();
-string  GetInputFile();
-string  GetOutputFile(const string &);
+fs::path GetInputFile();
+fs::path  GetOutputFile(const fs::path &);
 string  GetAlgorithm();
 string  CharStarToString(const char *);
 

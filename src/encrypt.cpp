@@ -19,9 +19,10 @@ using namespace std;
  * @param output_file Address of output file
  */
 
-void Encryption(const string &algorithm,
-                const string &input_file,
-                const string &output_file){
+void Encryption(const string &algorithm){
+    auto input_file  = GetInputFile(); // path object
+    auto output_file = GetOutputFile(input_file); // path object
+    cout << input_file << "\n" << output_file <<"\n";
     ifstream in(input_file);
     ofstream out(output_file);
 
@@ -31,13 +32,13 @@ void Encryption(const string &algorithm,
         return;;
     }
 
-    if(algorithm == "caesar")
+    if(algorithm == "caesar" || algorithm == "CAESAR" || algorithm == "Caesar")
         CaeserCipherEncode(in, out);
-    else if(algorithm == "shift")
+    else if(algorithm == "shift" || algorithm == "SHIFT" || algorithm == "Shift")
         ShiftCipherEncode(in,out);
-    else if(algorithm == "XOR")
+    else if(algorithm == "XOR" || algorithm == "Xor" || algorithm == "xor")
         XorCipherEncode(in, out);
-    else if(algorithm == "vigenere")
+    else if(algorithm == "vigenere" || algorithm == "VIGENERE" || algorithm == "Vigenere")
         VigenereCipherEncode(in,out);
 }
 
@@ -67,7 +68,7 @@ void ShiftCipherEncode(ifstream &input, ofstream &output)
     cin >> key;
     Caeser object(key);     // Caesar Class Object
 
-    object.Decrypt(input, output);
+    object.Encrypt(input, output);
 }
 
 /**

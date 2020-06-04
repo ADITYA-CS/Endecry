@@ -5,7 +5,7 @@
  * @details Handle command line arguments, generate input and output file
  * and also figure out which algorithm to use for decryption/encryption or which
  * algorithm to use for hashing.
- * @bug No bug
+ * @bug Shift is not working
  * @warning Don't modify without prior knowledge
  */
 
@@ -24,8 +24,6 @@ using namespace  std;
 #define HASH    3
 
 int main(int argc, char const *argv[]){
-    string input_file;
-    string output_file;
     string algorithm;
     int what_to_do = MESSAGE;
     if(argc == 1){
@@ -44,10 +42,6 @@ int main(int argc, char const *argv[]){
         } else if (task == 'H') {
             what_to_do = HASH;
         }
-        if(task == 'E' || task == 'D'){
-            input_file  = GetInputFile();
-            output_file = GetOutputFile(input_file);
-        }
     }
     else if(argc == 2){
         string argument_1 = CharStarToString(argv[1]);
@@ -58,14 +52,10 @@ int main(int argc, char const *argv[]){
         else if(argument_1 == "-E" || argument_1 == "-e"){
             what_to_do  = ENCRYPT;
             algorithm   = GetAlgorithm();
-            input_file  = GetInputFile();
-            output_file = GetOutputFile(input_file);
         }
         else if(argument_1 == "-D" || argument_1 == "-d"){
             what_to_do  = DECRYPT;
             algorithm   = GetAlgorithm();
-            input_file  = GetInputFile();
-            output_file = GetOutputFile(input_file);
         }
         else if (argument_1 == "-H" || argument_1 == "-hash"){
             what_to_do = HASH;
@@ -80,9 +70,9 @@ int main(int argc, char const *argv[]){
     }
 
     if(what_to_do == ENCRYPT)
-        Encryption(algorithm, input_file, output_file);
+        Encryption(algorithm);
     else if(what_to_do == DECRYPT)
-        Decryption(algorithm, input_file, output_file);
+        Decryption(algorithm);
     else if(what_to_do == HASH)
         HashMe(algorithm);
     return 0;

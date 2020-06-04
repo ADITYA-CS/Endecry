@@ -42,11 +42,14 @@ void PrintAlgorithmOption(){
 /**
  *  @brief Prints error message when unable to open file
  */
-
 void PrintCannotOpenFile(){
     cout << "\v\t-------------------------------------------------------------\n";
+    cout << "\t-------------------!ERROR! Can't Opening file! ----------------\n";
+    cout << "\t-------------------------------------------------------------\n\v";
+}
+void PrintError(){
+    cout << "\v\t-------------------------------------------------------------\n";
     cout << "\t------------------------ ERROR ------------------------------\n";
-    cout << "\t--------------------- INVALID FILE --------------------------\n";
     cout << "\t-------------------------------------------------------------\n\v";
 }
 
@@ -55,11 +58,11 @@ void PrintCannotOpenFile(){
  * @return address of the file
  */
 
-string GetInputFile(){
-    string input_file;
+fs::path GetInputFile(){
+    fs::path path;
     cout << "Input file : ";
-    cin >> input_file;
-    return input_file;
+    cin >> path;
+    return path;
 }
 
 /**
@@ -69,9 +72,37 @@ string GetInputFile(){
 
 string GetAlgorithm(){
     PrintAlgorithmOption();
-    string algorithm;
-    cout << "\tChoose one: ";
-    cin >> algorithm;
+    string algorithm, temp;
+    // reading which algorithm user want to use
+    // cross checking against database
+    while(true){
+        cout << "\tEnter name: ";
+        cin >> algorithm;
+        fs::path path = fs::current_path();
+        path = path.parent_path();
+        path /= "src/file/algo.txt";
+        ifstream in(path);
+        if(!in.is_open()){
+            PrintError();
+            exit(10);
+        }
+        bool can_perform = false;
+        while(getline(in,temp)){
+            if(temp == algorithm){
+                in.close();
+                can_perform = true;
+                break;
+            }
+        }
+        if(can_perform){
+            break;
+        } else{
+            in.close();
+            PrintError();
+            abort();
+        }
+    }
+
     return algorithm;
 }
 
@@ -81,10 +112,10 @@ string GetAlgorithm(){
  * @return Address of the output file
  */
 // output file location for resultant data
-string GetOutputFile(const string &input){
-    string out = input;
-    out += ".endecry";
-    return out;
+fs::path  GetOutputFile(const fs::path &input){
+    fs::path path = input;
+    path += ".endecry";
+    return path;
 }
 
 /**
@@ -94,7 +125,7 @@ string GetOutputFile(const string &input){
  */
 
 string CharStarToString(const char *input){
-    string out = "";
+    string out;
     int i = 0;
     while(input[i]){
         out += input[i++];
@@ -112,8 +143,15 @@ void PrintHelpPage(){
 
 }
 
-int StringToInt(string option){
-    if(option.size() > 2 || option.size() == 0){
+/**
+ * Covert string to integer
+ * @param option  string
+ * @return return integer if possible
+ *         otherwise return -1 which indicate string is not
+ *         convertible to integer
+ */
+int StringToInt(const string& option){
+    if(option.size() > 2 || option.empty()){
         return -1;
     }
     for(auto x : option){
@@ -129,6 +167,15 @@ int StringToInt(string option){
     return res;
 }
 
+/**
+ *  Take input from user and determine which task to perform
+ * @return  H   for Hash
+ *          E   for Encryption
+ *          D   for Decryption
+ *          I   for Information
+ *          h   for Help
+ *          Default is I.
+ */
 char TaskToPerform(){
     string option;
     cout << "\t-----------------------------------------------------------------\n";
