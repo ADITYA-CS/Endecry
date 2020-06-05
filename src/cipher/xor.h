@@ -9,7 +9,6 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-using namespace std;
 
 /*
 input: take key to encrypt the plain-text and Decrypt the cipher-text
@@ -17,11 +16,11 @@ input: take key to encrypt the plain-text and Decrypt the cipher-text
 class Xor
 {
 private:
-    string key_;
+    std::string key_;
 public:
-    explicit Xor(string);
-    void Encrypt(ifstream &, ofstream &);
-    void Decrypt(ifstream &, ofstream &);
+    explicit Xor(std::string);
+    void Encrypt(std::ifstream &, std::ofstream &);
+    void Decrypt(std::ifstream &, std::ofstream &);
 };
 
 

@@ -9,7 +9,13 @@
  */
 
 #include "encrypt.h"
-using namespace std;
+
+// local function
+void CaeserCipherEncode(std::ifstream &, std::ofstream &);
+void ShiftCipherEncode(std::ifstream &, std::ofstream &);
+void XorCipherEncode(std::ifstream &, std::ofstream &);
+void VigenereCipherEncode(std::ifstream &, std::ofstream &);
+void DESCipherEncode(fs::path &);
 
 /**
  * @brief Calls appropriate function based on algorithm parameter for encryption
@@ -19,17 +25,17 @@ using namespace std;
  * @param output_file Address of output file
  */
 
-void Encryption(const string &algorithm){
+void Encryption(const std::string &algorithm){
     auto input_file  = GetInputFile(); // path object
     auto output_file = GetOutputFile(input_file); // path object
-    cout << input_file << "\n" << output_file <<"\n";
-    ifstream in(input_file);
-    ofstream out(output_file);
+    // std::cout << input_file << "\n" << output_file <<"\n";
+    std::ifstream in(input_file);
+    std::ofstream out(output_file);
 
     if(!in || !out)
     {
         PrintCannotOpenFile();
-        return;;
+        return;
     }
 
     if(algorithm == "caesar" || algorithm == "CAESAR" || algorithm == "Caesar")
@@ -40,6 +46,8 @@ void Encryption(const string &algorithm){
         XorCipherEncode(in, out);
     else if(algorithm == "vigenere" || algorithm == "VIGENERE" || algorithm == "Vigenere")
         VigenereCipherEncode(in,out);
+    else if(algorithm == "DES" || algorithm == "Des" || algorithm == "des")
+        DESCipherEncode(input_file);
 }
 
 /**
@@ -48,7 +56,7 @@ void Encryption(const string &algorithm){
  * @param output Output stream
  */
 
-void CaeserCipherEncode(ifstream &input, ofstream &output)
+void CaeserCipherEncode(std::ifstream &input, std::ofstream &output)
 {
     Caeser object(3);   // Caesar Class Object with key 3
 
@@ -61,11 +69,11 @@ void CaeserCipherEncode(ifstream &input, ofstream &output)
  * @param output Output stream
  */
 
-void ShiftCipherEncode(ifstream &input, ofstream &output)
+void ShiftCipherEncode(std::ifstream &input, std::ofstream &output)
 {
     int key;    // key for Encryption
-    cout << "Key : ";
-    cin >> key;
+    std::cout << "Key : ";
+    std::cin >> key;
     Caeser object(key);     // Caesar Class Object
 
     object.Encrypt(input, output);
@@ -77,11 +85,11 @@ void ShiftCipherEncode(ifstream &input, ofstream &output)
  * @param output Output stream
  */
 
-void XorCipherEncode(ifstream &input, ofstream &output)
+void XorCipherEncode(std::ifstream &input, std::ofstream &output)
 {
-    string key;     // key for encryption
-    cout << "Key : ";
-    cin >> key;
+    std::string key;     // key for encryption
+    std::cout << "Key : ";
+    std::cin >> key;
     Xor object(key);    // Xor Class Object
 
     object.Encrypt(input, output);
@@ -93,12 +101,21 @@ void XorCipherEncode(ifstream &input, ofstream &output)
  * @param output Output stream
  */
 
-void VigenereCipherEncode(ifstream &input, ofstream &output)
+void VigenereCipherEncode(std::ifstream &input, std::ofstream &output)
 {
-    string key;     // key for encryption
-    cout << "Key : ";
-    cin >> key;
+    std::string key;     // key for encryption
+    std::cout << "Key : ";
+    std::cin >> key;
     Vigenere object(key);  // Vigenere Class Object
 
     object.Encrypt(input, output);
+}
+
+void DESCipherEncode(fs::path &input){
+    std::string key;// = "0001001100110100010101110111100110011011101111001101111111110001";
+    std::cout << "Enter key\n: ";
+    std::cin >> key;
+
+    DES des;
+    des.Encrypt(input, key);
 }

@@ -19,13 +19,11 @@
 #include "cipher/caesar.h"
 #include "cipher/xor.h"
 #include "cipher/vigenere.h"
-namespace fs = std::filesystem;
-using namespace  std;
+#include "cipher/DES.h"
 
-void Encryption(const string &);
-void CaeserCipherEncode(ifstream &, ofstream &);
-void ShiftCipherEncode(ifstream &, ofstream &);
-void XorCipherEncode(ifstream &, ofstream &);
-void VigenereCipherEncode(ifstream &, ofstream &);
+
+namespace fs = std::filesystem;
+
+void Encryption(const std::string &);
 
 #endif //ENDECRY_ENCRYPT_H

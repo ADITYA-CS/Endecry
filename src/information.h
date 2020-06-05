@@ -6,7 +6,6 @@
 #define ENDECRY_INFORMATION_H
 
 #include <iostream>
-using namespace  std;
 
 //TODO
 void PrintInformation();

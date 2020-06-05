@@ -6,9 +6,11 @@
 #define ENDECRY_DES_H
 
 #include <iostream>
+#include <filesystem>
 #include <stack>
+#include <fstream>
 
-using namespace std;
+namespace fs = std::filesystem;
 
 class DES{
 
@@ -20,22 +22,26 @@ private: // private data
     int *   Expension_table_;    // used in f function
     int *   Permutation_table_;    // used in f function
     int *** S_box_; // used in f function
-    string  subkey_[16];
+    std::string  subkey_[16];
 
 private: // private function
-    static int     BinaryToDecimal(const string&);
-    static string  DecimalToBinary(int);
-    static string  XorString(string, string);
-    static string  circular_shift_one(string); // shift string circularly by one char
-    static string  circular_shift_two(string); // shift string circularly by two char
-    string  f(string, string); // f function
-
+    static int     BinaryToDecimal(const std::string&);
+    static std::string  DecimalToBinary(int);
+    static std::string  XorString(std::string, std::string);
+    static std::string  circular_shift_one(std::string); // shift string circularly by one char
+    static std::string  circular_shift_two(std::string); // shift string circularly by two char
+    std::string  f(std::string, std::string &); // f function
+    void    Generate_key(std::string);
+    void    Reverse_key(); // reverse the subkey_ vector
+    std::string  Encrypt(std::string);
+    static std::string     StringToBitString(const std::string &);
+    static std::string     Padding(std::string &);
+    static std::string     BinaryToAscii(const std::string &input);
 public: // public function
     DES();
-    void    generate_key(string);
-    string  Encrypt(string);
-    string  Decrypt(string);
-    void    reverse_key(); // reverse the subkey_ vector
+
+    void    Encrypt(fs::path&, const std::string &);
+    void    Decrypt(fs::path&, const std::string &);
 };
 
 #endif //ENDECRY_DES_H

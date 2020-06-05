@@ -14,18 +14,17 @@
 #include <fstream>
 #include <filesystem>
 namespace fs = std::filesystem;
-using namespace std;
 
 void    ErrorMessage();
 void    PrintAlgorithmOption();
+void    PrintHashOption();
 void    PrintError();
 void    PrintCannotOpenFile();
-void    PrintHelpPage();
-int     StringToInt(const string&);
+int     StringToInt(const std::string&);
 char    TaskToPerform();
 fs::path GetInputFile();
 fs::path  GetOutputFile(const fs::path &);
-string  GetAlgorithm();
-string  CharStarToString(const char *);
+std::string  GetAlgorithm(int);
+std::string  CharStarToString(const char *);
 
 #endif //ENDECRY_UTILITY_H

@@ -4,7 +4,7 @@
 
 #include "vigenere.h"
 
-Vigenere :: Vigenere(string s) : modular_(26)
+Vigenere :: Vigenere(std::string s) : modular_(26)
 {
     key_ = "";
     for(size_t i = 0; s[i]; i++)
@@ -16,13 +16,12 @@ Vigenere :: Vigenere(string s) : modular_(26)
     }
 }
 
-void Vigenere :: Encrypt(ifstream &in, ofstream &out)
+void Vigenere :: Encrypt(std::ifstream &in, std::ofstream &out)
 {
     size_t key_len = key_.size(), i = 0;
     char ch;
-    while(in)
+    while(in.get(ch))
     {
-        in.get(ch);
         if(ch >= 'a' && ch <= 'z')
             ch = (ch - 'a' + key_[i]  - 'A') % modular_ + 'a';
         else if(ch >= 'A' && ch <= 'Z')
@@ -34,13 +33,12 @@ void Vigenere :: Encrypt(ifstream &in, ofstream &out)
     out.close();
 }
 
-void Vigenere :: Decrypt(ifstream &in, ofstream &out)
+void Vigenere :: Decrypt(std::ifstream &in, std::ofstream &out)
 {
     size_t key_len = key_.size(), i = 0;
     char ch;
-    while(in)
+    while(in.get(ch))
     {
-        in.get(ch);
         if(ch >= 'a' && ch <= 'z')
             ch = (ch - 'a' - key_[i]  + 'A' + modular_) % modular_ + 'a';
         else if(ch >= 'A' && ch <= 'Z')

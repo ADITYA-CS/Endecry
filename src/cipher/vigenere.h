@@ -8,17 +8,16 @@
 
 #include <iostream>
 #include <fstream>
-using namespace std;
 
 class Vigenere
 {
 private:
-    string key_;
+    std::string key_;
     const int modular_;
 public:
-    [[maybe_unused]] explicit Vigenere(string);
-    void Encrypt(ifstream&, ofstream&);
-    void Decrypt(ifstream&, ofstream&);
+    Vigenere(std::string);
+    void Encrypt(std::ifstream&, std::ofstream&);
+    void Decrypt(std::ifstream&, std::ofstream&);
 };
 
 

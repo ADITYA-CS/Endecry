@@ -3,9 +3,8 @@
 //
 
 #include "information.h"
-using namespace std;
 
 void PrintInformation()
 {
-    cout << "--TODO--\n";
+    std::cout << "--TODO--\n";
 }

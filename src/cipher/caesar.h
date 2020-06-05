@@ -13,7 +13,6 @@
 
 #include <iostream>
 #include <fstream>
-using namespace std;
 
 /**
  * @brief Caesar class
@@ -33,8 +32,8 @@ private:
     const int modular_;
 public:
     explicit Caeser(int);
-    void Encrypt(ifstream &, ofstream &) const;
-    void Decrypt(ifstream &, ofstream &) const;
+    void Encrypt(std::ifstream &, std::ofstream &) const;
+    void Decrypt(std::ifstream &, std::ofstream &) const;
 };
 
 

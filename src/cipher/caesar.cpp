@@ -26,7 +26,7 @@ Caeser :: Caeser(int n) : offset_(n % 26), modular_(26){}
  * @param in Input stream that open file as text
  * @param out Output stream that contain encrypted text
  */
-void Caeser :: Encrypt(ifstream &in, ofstream &out) const
+void Caeser :: Encrypt(std::ifstream &in, std::ofstream &out) const
 {
     char ch;
     while(in)
@@ -51,7 +51,7 @@ void Caeser :: Encrypt(ifstream &in, ofstream &out) const
  * @param in Input stream that open file as text
  * @param out Output stream that contain decrypted text
  */
-void Caeser :: Decrypt(ifstream &in, ofstream &out) const
+void Caeser :: Decrypt(std::ifstream &in, std::ofstream &out) const
 {
     char ch;
     while(in)

@@ -10,10 +10,14 @@
 
 
 #include "decrypt.h"
-using namespace std;
 
 
-
+// local function
+void CaeserCipherDecode(std::ifstream &, std::ofstream &);
+void ShiftCipherDecode(std::ifstream &, std::ofstream &);
+void XorCipherDecode(std::ifstream &, std::ofstream &);
+void VigenereCipherDecode(std::ifstream &, std::ofstream &);
+void DESCipherDecode(fs::path &);
 /**
  * @brief Calls appropriate function based on algorithm parameter for decryption
  * @param algorithm Algorithm used for decryption
@@ -21,13 +25,13 @@ using namespace std;
  * @param output_file Address of output file
  */
 
-void Decryption(const string &algorithm)
+void Decryption(const std::string &algorithm)
 {
 
     auto input_file  = GetInputFile();
     auto output_file = GetOutputFile(input_file);
-    ifstream in(input_file);    // input stream
-    ofstream out(output_file);  // output stream
+    std::ifstream in(input_file);    // input stream
+    std::ofstream out(output_file);  // output stream
 
     if(!in || !out)
     {
@@ -43,6 +47,8 @@ void Decryption(const string &algorithm)
         XorCipherDecode(in, out);
     else if(algorithm == "vigenere" || algorithm == "VIGENERE" || algorithm == "Vigenere")
         VigenereCipherDecode(in,out);
+    else if(algorithm == "DES" || algorithm == "Des" || algorithm == "des")
+        DESCipherDecode(input_file);
 }
 
 
@@ -52,7 +58,7 @@ void Decryption(const string &algorithm)
  * @param output Output stream
  */
 
-void CaeserCipherDecode(ifstream &input, ofstream &output)
+void CaeserCipherDecode(std::ifstream &input, std::ofstream &output)
 {
     Caeser object(3);   // Caesar Class Object with key 3
 
@@ -67,11 +73,11 @@ void CaeserCipherDecode(ifstream &input, ofstream &output)
  * @param output Output stream
  */
 
-void ShiftCipherDecode(ifstream &input, ofstream &output)
+void ShiftCipherDecode(std::ifstream &input, std::ofstream &output)
 {
     int key;    // key for decryption
-    cout << "Key : ";
-    cin >> key;
+    std::cout << "Key : ";
+    std::cin >> key;
     Caeser object(key);     // Caesar Class Object
 
     object.Decrypt(input, output);
@@ -84,11 +90,11 @@ void ShiftCipherDecode(ifstream &input, ofstream &output)
  * @param output Output stream
  */
 
-void XorCipherDecode(ifstream &input, ofstream &output)
+void XorCipherDecode(std::ifstream &input, std::ofstream &output)
 {
-    string key;     // key for decryption
-    cout << "Key : ";
-    cin >> key;
+    std::string key;     // key for decryption
+    std::cout << "Key : ";
+    std::cin >> key;
     Xor object(key);    // Xor Class Object
 
     object.Decrypt(input, output);
@@ -101,12 +107,21 @@ void XorCipherDecode(ifstream &input, ofstream &output)
  * @param output Output stream
  */
 
-void VigenereCipherDecode(ifstream &input, ofstream &output)
+void VigenereCipherDecode(std::ifstream &input, std::ofstream &output)
 {
-    string key;     // key for decryption
-    cout << "Key : ";
-    cin >> key;
+    std::string key;     // key for decryption
+    std::cout << "Key : ";
+    std::cin >> key;
     Vigenere object(key);  // Vigenere Class Object
 
     object.Decrypt(input, output);
+}
+
+void DESCipherDecode(fs::path &input){
+    std::string key = "0001001100110100010101110111100110011011101111001101111111110001";
+    //std::cout << "Enter key\n: ";
+    //std::cin >> key;
+
+    DES des;
+    des.Decrypt(input, key);
 }

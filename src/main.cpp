@@ -16,7 +16,6 @@
 #include "information.h"
 #include "hash.h"
 
-using namespace  std;
 
 #define MESSAGE 0
 #define ENCRYPT 1
@@ -24,16 +23,18 @@ using namespace  std;
 #define HASH    3
 
 int main(int argc, char const *argv[]){
-    string algorithm;
+    std::string algorithm;
     int what_to_do = MESSAGE;
     if(argc == 1){
         char task = TaskToPerform();
-        if (task == 'h')
-            PrintHelpPage();
+        if (task == 'h');
+            // PrintHelpPage();
         else if(task == 'i')
             PrintInformation();
-        else {
-            algorithm   = GetAlgorithm();
+        else if(task == 'H'){
+            algorithm = GetAlgorithm(HASH);
+        } else {
+            algorithm = GetAlgorithm(ENCRYPT);
         }
         if (task == 'E') {
             what_to_do = ENCRYPT;
@@ -44,22 +45,22 @@ int main(int argc, char const *argv[]){
         }
     }
     else if(argc == 2){
-        string argument_1 = CharStarToString(argv[1]);
-        if (argument_1 == "-h" || argument_1 == "-help")
-            PrintHelpPage();
+        std::string argument_1 = CharStarToString(argv[1]);
+        if (argument_1 == "-h" || argument_1 == "-help");
+            //PrintHelpPage();
         else if(argument_1 == "-i" || argument_1 == "-I")
             PrintInformation();
         else if(argument_1 == "-E" || argument_1 == "-e"){
             what_to_do  = ENCRYPT;
-            algorithm   = GetAlgorithm();
+            algorithm   = GetAlgorithm(ENCRYPT);
         }
         else if(argument_1 == "-D" || argument_1 == "-d"){
             what_to_do  = DECRYPT;
-            algorithm   = GetAlgorithm();
+            algorithm   = GetAlgorithm(DECRYPT);
         }
         else if (argument_1 == "-H" || argument_1 == "-hash"){
             what_to_do = HASH;
-            algorithm   = GetAlgorithm();
+            algorithm   = GetAlgorithm(HASH);
         }
         else{
             ErrorMessage();
