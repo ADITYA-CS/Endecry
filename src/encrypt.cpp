@@ -16,6 +16,7 @@ void ShiftCipherEncode(std::ifstream &, std::ofstream &);
 void XorCipherEncode(std::ifstream &, std::ofstream &);
 void VigenereCipherEncode(std::ifstream &, std::ofstream &);
 void DESCipherEncode(fs::path &);
+void RC4CipherEncode(fs::path &);
 
 /**
  * @brief Calls appropriate function based on algorithm parameter for encryption
@@ -24,7 +25,6 @@ void DESCipherEncode(fs::path &);
  * @param input_file Address of input file
  * @param output_file Address of output file
  */
-
 void Encryption(const std::string &algorithm){
     auto input_file  = GetInputFile(); // path object
     auto output_file = GetOutputFile(input_file); // path object
@@ -48,6 +48,8 @@ void Encryption(const std::string &algorithm){
         VigenereCipherEncode(in,out);
     else if(algorithm == "DES" || algorithm == "Des" || algorithm == "des")
         DESCipherEncode(input_file);
+    else if(algorithm == "RC4" || algorithm == "Rc4" || algorithm == "rc4")
+        RC4CipherEncode(input_file);
 }
 
 /**
@@ -112,10 +114,19 @@ void VigenereCipherEncode(std::ifstream &input, std::ofstream &output)
 }
 
 void DESCipherEncode(fs::path &input){
-    std::string key;// = "0001001100110100010101110111100110011011101111001101111111110001";
+    std::string key;
+    std::cout << "Key must be 8 ascii characters or bit string of size 64\n";
     std::cout << "Enter key\n: ";
     std::cin >> key;
 
     DES des;
     des.Encrypt(input, key);
+}
+
+void RC4CipherEncode(fs::path &input){
+    std::string key;
+    std::cout << "Enter key\n: ";
+    std::cin >> key;
+    RC4 rc(key);
+    rc.Encrypt(input);
 }

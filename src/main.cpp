@@ -13,7 +13,6 @@
 #include "utility.h"
 #include "encrypt.h"
 #include "decrypt.h"
-#include "information.h"
 #include "hash.h"
 
 
@@ -23,17 +22,12 @@
 #define HASH    3
 
 int main(int argc, char const *argv[]){
+    welcome();
     std::string algorithm;
     int what_to_do = MESSAGE;
     if(argc == 1){
         char task = TaskToPerform();
-        if (task == 'h');
-            // PrintHelpPage();
-        else if(task == 'i')
-            PrintInformation();
-        else if(task == 'H'){
-            algorithm = GetAlgorithm(HASH);
-        } else {
+        if(task != 'H'){
             algorithm = GetAlgorithm(ENCRYPT);
         }
         if (task == 'E') {
@@ -46,11 +40,7 @@ int main(int argc, char const *argv[]){
     }
     else if(argc == 2){
         std::string argument_1 = CharStarToString(argv[1]);
-        if (argument_1 == "-h" || argument_1 == "-help");
-            //PrintHelpPage();
-        else if(argument_1 == "-i" || argument_1 == "-I")
-            PrintInformation();
-        else if(argument_1 == "-E" || argument_1 == "-e"){
+        if(argument_1 == "-E" || argument_1 == "-e"){
             what_to_do  = ENCRYPT;
             algorithm   = GetAlgorithm(ENCRYPT);
         }
@@ -60,7 +50,6 @@ int main(int argc, char const *argv[]){
         }
         else if (argument_1 == "-H" || argument_1 == "-hash"){
             what_to_do = HASH;
-            algorithm   = GetAlgorithm(HASH);
         }
         else{
             ErrorMessage();

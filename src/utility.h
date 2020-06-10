@@ -15,6 +15,7 @@
 #include <filesystem>
 namespace fs = std::filesystem;
 
+void    welcome();
 void    ErrorMessage();
 void    PrintAlgorithmOption();
 void    PrintHashOption();
@@ -26,5 +27,6 @@ fs::path GetInputFile();
 fs::path  GetOutputFile(const fs::path &);
 std::string  GetAlgorithm(int);
 std::string  CharStarToString(const char *);
+
 
 #endif //ENDECRY_UTILITY_H

@@ -9,36 +9,11 @@ void CallMd2(string);
 void CallMd2(ifstream &, ofstream &);
 
 void HashMe(string algorithm){
-    string option;
     cout << "\t-----------------------------------------------------------------\n";
-    cout << "\tWhat do you want to hash?\n";
-    cout << "\t1. String\n";
-    cout << "\t2. File\n";
-    cout << "\tOption: ";
-    cin >> option;
-    int op = StringToInt(option);
-    while(op < 1 || op > 2){
-        cout << "\tWrong option\n";
-        cout << "\tOption: ";
-        cin >> option;
-        op = StringToInt(option);
-    }
-    cout << "\t-----------------------------------------------------------------\n\v";
-    cout << "\t-----------------------------------------------------------------\n";
-    if(op == 1){
-        string message;
-        cout << "\tMessage : ";
-        cin >> message;
-        algorithm = "MD2";
-        if(algorithm == "MD2"){
-            CallMd2(message);
-        }
-    }
-    else{
-        //TODO file implementation
-    }
-
-
+    string message;
+    cout << "\tMessage : ";
+    cin >> message;
+    CallMd2(message);
     cout << "\t-----------------------------------------------------------------\n";
 }
 

@@ -19,3 +19,6 @@ aes
 MD2
 Md2
 md2
+RC4
+rc4
+Rc4

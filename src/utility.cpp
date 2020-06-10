@@ -30,7 +30,7 @@ void PrintAlgorithmOption(){
     std::cout << "\t-----------------------------------------------------------------\n";
     std::cout << "\t                     Encryption Algorithms             \n\n";
     std::cout << "\t     1. XOR           2. caesar           3. shift     \n";
-    std::cout << "\t     4. Vigenere      5. DES              6. AES       \n";
+    std::cout << "\t     4. Vigenere      5. DES              6. RC4       \n";
     std::cout << "\t-----------------------------------------------------------------\n";
 }
 
@@ -61,7 +61,7 @@ void PrintError(){
 
 fs::path GetInputFile(){
     fs::path path;
-    std::cout << "Input file : ";
+    std::cout << "Input file path: ";
     std::cin >> path;
     return path;
 }
@@ -113,8 +113,8 @@ std::string GetAlgorithm(int whichOne){
 
 /**
  * @brief Create the address for output file
- * @param input Address of the input file
- * @return Address of the output file
+ * @param path of the input file
+ * @return path of the output file
  */
 // output file location for resultant data
 fs::path  GetOutputFile(const fs::path &input){
@@ -176,7 +176,7 @@ char TaskToPerform(){
     std::string option;
     std::cout << "\t-----------------------------------------------------------------\n";
     std::cout << "\t                        WHAT TO DO\n";
-    std::cout << "\t1. Hash    2. Encrypt    3. Decrypt    4. Information    5. Help\n";
+    std::cout << "\t             1. Hash    2. Encrypt    3. Decrypt\n";
     std::cout << "\tOption: ";
     std::cin >> option;
     int op = StringToInt(option);
@@ -194,4 +194,19 @@ char TaskToPerform(){
         case 5: return 'h';
     }
     return 'I';
+}
+
+void welcome(){
+
+    std::cout << "######## ##    ## ########  ########  ######  ########  ##    ##\n";
+    std::cout << "##       ###   ## ##     ## ##       ##    ## ##     ##  ##  ##\n";
+    std::cout << "##       ####  ## ##     ## ##       ##       ##     ##   ####\n";
+    std::cout << "######   ## ## ## ##     ## ######   ##       ########     ##\n";
+    std::cout << "##       ##  #### ##     ## ##       ##       ##   ##      ##\n";
+    std::cout << "##       ##   ### ##     ## ##       ##    ## ##    ##     ##\n";
+    std::cout << "######## ##    ## ########  ########  ######  ##     ##    ##\n";
+
+    std::cout << "\v";
+    std::cout << "Endecry support file encryption and decryption.\n";
+    std::cout << "Endecry also support MD2 hash\n\v";
 }

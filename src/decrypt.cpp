@@ -18,6 +18,7 @@ void ShiftCipherDecode(std::ifstream &, std::ofstream &);
 void XorCipherDecode(std::ifstream &, std::ofstream &);
 void VigenereCipherDecode(std::ifstream &, std::ofstream &);
 void DESCipherDecode(fs::path &);
+void RC4CipherDecode(fs::path &);
 /**
  * @brief Calls appropriate function based on algorithm parameter for decryption
  * @param algorithm Algorithm used for decryption
@@ -49,6 +50,8 @@ void Decryption(const std::string &algorithm)
         VigenereCipherDecode(in,out);
     else if(algorithm == "DES" || algorithm == "Des" || algorithm == "des")
         DESCipherDecode(input_file);
+    else if(algorithm == "RC4" || algorithm == "Rc4" || algorithm == "rc4")
+        RC4CipherDecode(input_file);
 }
 
 
@@ -118,10 +121,20 @@ void VigenereCipherDecode(std::ifstream &input, std::ofstream &output)
 }
 
 void DESCipherDecode(fs::path &input){
-    std::string key = "0001001100110100010101110111100110011011101111001101111111110001";
-    //std::cout << "Enter key\n: ";
-    //std::cin >> key;
+    std::string key;
+    std::cout << "Key must be 8 ascii characters or bit string of size 64\n";
+    std::cout << "Enter key\n: ";
+    std::cin >> key;
+
 
     DES des;
     des.Decrypt(input, key);
+}
+
+void RC4CipherDecode(fs::path &input){
+    std::string key;
+    std::cout << "Enter key\n: ";
+    std::cin >> key;
+    RC4 rc(key);
+    rc.Decrypt(input);
 }

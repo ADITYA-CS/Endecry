@@ -25,6 +25,7 @@ private: // private data
     std::string  subkey_[16];
 
 private: // private function
+    std::string ValidKey(std::string key);
     static int     BinaryToDecimal(const std::string&);
     static std::string  DecimalToBinary(int);
     static std::string  XorString(std::string, std::string);

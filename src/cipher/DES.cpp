@@ -327,7 +327,7 @@ void   DES :: Encrypt(fs::path &input, const std::string &key){
             exit(501);
     }
 
-    Generate_key(key);
+    Generate_key(ValidKey(key));
     std::string temp;
     char ch;
     while(in.get(ch)){
@@ -374,7 +374,7 @@ void DES :: Decrypt(fs::path & input, const std::string & key){
         exit(502);
     }
     // TO decrypt, generate key and reverse it
-    Generate_key(key);
+    Generate_key(ValidKey(key));
     Reverse_key();
 
     std::string temp;
@@ -391,4 +391,25 @@ void DES :: Decrypt(fs::path & input, const std::string & key){
     // close file
     in.close();
     out.close();
+}
+
+std::string DES:: ValidKey(std::string key){
+    std::string result;
+    if(key.size() == 64){
+        for(auto ch : key){
+            if(ch != '0' && ch != '1'){
+                std::cout << " FAILED TO MEET KEY CONSTRAINTS\n";
+                exit(1);
+            }
+        }
+        return key;
+    } else if(key.size() == 8){
+        for(auto ch : key){
+            result += DecimalToBinary((int)ch);
+        }
+    } else{
+        std::cout << " FAILED TO MEET KEY CONSTRAINTS\n";
+        exit(1);
+    }
+    return result;
 }

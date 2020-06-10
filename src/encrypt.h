@@ -15,12 +15,13 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+
 #include "utility.h"
 #include "cipher/caesar.h"
 #include "cipher/xor.h"
 #include "cipher/vigenere.h"
 #include "cipher/DES.h"
-
+#include "cipher/RC4.h"
 
 namespace fs = std::filesystem;
 
