@@ -9,6 +9,7 @@
 #include <filesystem>
 #include <stack>
 #include <fstream>
+#include <algorithm>
 
 namespace fs = std::filesystem;
 
