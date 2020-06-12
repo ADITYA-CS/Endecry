@@ -1,5 +1,15 @@
 # E N D E C R Y
 
+### INTRODUCTION
+
+> DES uses 64-bits / 8-bytes key <br>
+> 3DES uses Three 64-bits / 8-bytes key
+
+### REQUIREMENT
+```bash
+sudo apt-get install cmake
+sudo apt-get install g++
+```
 ### COMPILING
 ```bash
 mkdir build
@@ -17,6 +27,3 @@ use this relative paht or you can use absolute paht
 ```bash
 ../testing/file1.txt
 ```
-
-###### References: 
-1. SHA-1 https://tools.ietf.org/html/rfc3174

@@ -42,8 +42,8 @@ private: // private function
 public: // public function
     DES();
 
-    void    Encrypt(fs::path&, const std::string &);
-    void    Decrypt(fs::path&, const std::string &);
+    void    Encrypt(fs::path&, fs::path&, const std::string &);
+    void    Decrypt(fs::path&, fs::path&, const std::string &);
 };
 
 #endif //ENDECRY_DES_H

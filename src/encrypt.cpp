@@ -16,6 +16,7 @@ void ShiftCipherEncode(std::ifstream &, std::ofstream &);
 void XorCipherEncode(std::ifstream &, std::ofstream &);
 void VigenereCipherEncode(std::ifstream &, std::ofstream &);
 void DESCipherEncode(fs::path &);
+void ThreeDESCipherEncode(fs::path &);
 void RC4CipherEncode(fs::path &);
 
 /**
@@ -50,6 +51,8 @@ void Encryption(const std::string &algorithm){
         DESCipherEncode(input_file);
     else if(algorithm == "RC4" || algorithm == "Rc4" || algorithm == "rc4")
         RC4CipherEncode(input_file);
+    else if(algorithm == "3DES" || algorithm == "3des" || algorithm == "3Des")
+        ThreeDESCipherEncode(input_file);
 }
 
 /**
@@ -118,9 +121,35 @@ void DESCipherEncode(fs::path &input){
     std::cout << "Key must be 8 ascii characters or bit string of size 64\n";
     std::cout << "Enter key\n: ";
     std::cin >> key;
+    fs::path output = input;
+    output += ".endecry";
 
     DES des;
-    des.Encrypt(input, key);
+    des.Encrypt(input, output, key);
+}
+
+void ThreeDESCipherEncode(fs::path &input){
+    std::string key1, key2, key3;
+    std::cout << "Key must be 8 ascii characters or bit string of size 64\n";
+    std::cout << "Enter 1st key\n: ";
+    std::cin >> key1;
+    std::cout << "Enter 2nd key\n: ";
+    std::cin >> key2;
+    std::cout << "Enter 3rd key\n: ";
+    std::cin >> key3;
+
+
+    fs::path output = input, temp = input;
+    output += ".endecry";
+    temp += ".temp";
+
+    DES des1, des2, des3;
+
+    des1.Encrypt(input, output, key1);
+    des2.Decrypt(output, temp, key2);
+    des3.Encrypt(temp, output, key3);
+
+    fs::remove(temp);
 }
 
 void RC4CipherEncode(fs::path &input){

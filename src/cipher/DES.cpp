@@ -304,10 +304,7 @@ std::string DES :: Encrypt(std::string message){
 }
 
 
-void   DES :: Encrypt(fs::path &input, const std::string &key){
-
-    fs::path output = input;
-    output += ".endecry"; // adding extension
+void   DES :: Encrypt(fs::path &input, fs::path&output, const std::string &key){
 
     std::ifstream in;
     std::ofstream out;
@@ -352,10 +349,7 @@ void   DES :: Encrypt(fs::path &input, const std::string &key){
     out.close();
 }
 
-void DES :: Decrypt(fs::path & input, const std::string & key){
-    fs::path output = input;
-    output += ".endecry"; // adding extension
-
+void DES :: Decrypt(fs::path & input, fs::path&output, const std::string & key){
     std::ifstream in;
     std::ofstream out;
     // opening file

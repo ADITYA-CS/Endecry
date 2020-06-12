@@ -30,7 +30,7 @@ void PrintAlgorithmOption(){
     std::cout << "\t-----------------------------------------------------------------\n";
     std::cout << "\t                     Encryption Algorithms             \n\n";
     std::cout << "\t     1. XOR           2. caesar           3. shift     \n";
-    std::cout << "\t     4. Vigenere      5. DES              6. RC4       \n";
+    std::cout << "\t     4. Vigenere      5. DES              6. 3DES       \n";
     std::cout << "\t-----------------------------------------------------------------\n";
 }
 
