@@ -23,7 +23,7 @@ make
 ```
 ### TESTING
 test directory contains a sample file. Use that file for testing. 
-use this relative paht or you can use absolute paht
+use this relative path or you can use absolute path
 ```bash
 ../testing/file1.txt
 ```
