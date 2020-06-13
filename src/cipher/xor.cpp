@@ -1,6 +1,4 @@
-//
-// Created by the__martian on 5/13/20.
-//
+
 #include "xor.h"
 
 Xor :: Xor(std::string s) : key_(s){}

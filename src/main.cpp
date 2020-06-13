@@ -1,6 +1,5 @@
 /**
  * @file main.cpp
- * @author Aditya Kumar Singh
  * @brief   The main file
  * @details Handle command line arguments, generate input and output file
  * and also figure out which algorithm to use for decryption/encryption or which

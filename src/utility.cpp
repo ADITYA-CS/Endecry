@@ -1,6 +1,5 @@
 /**
  * @file utility.cpp
- * @author Aditya Kumar Singh
  * @brief   Contain some helper function
  * @details This contains helper function. such as function for conversion from
  * array of char to string, printing error message and many more. feel fill to see

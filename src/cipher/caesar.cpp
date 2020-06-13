@@ -1,6 +1,5 @@
 /**
  * @file caesar.cpp
- * @author Aditya Kumar Singh
  * @brief   Contain class definition for caesar cipher algorithm
  * @details Refer wikipedia/other source for more working of Caesar cipher
  * @warning Don't modify with prior knowledge
@@ -15,7 +14,7 @@
  * @details
  * Assign n to offset_
  * set modular_ to 26
- * @param n integer key for shift cipher, n = 3 in case of caesar cipher
+ * @param n integer key for shift cipher, n = -3 % 26 (n = 23) in case of caesar cipher
  */
 Caeser :: Caeser(int n) : offset_(n % 26), modular_(26){}
 

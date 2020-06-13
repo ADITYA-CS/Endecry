@@ -1,6 +1,5 @@
 /**
  * @file encrypt.h
- * @author Aditya Kumar Singh
  * @brief   Header file, function defined in encrypt.cpp
  * @details Take input file address, out file address, and
  * which algorithm to perform. There is no interaction with std I/O console

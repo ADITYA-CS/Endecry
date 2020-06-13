@@ -1,6 +1,5 @@
 /**
  * @file encrypt.cpp
- * @author Aditya Kumar Singh
  * @brief   call specific encryption algorithm
  * @details Take input file address, out file address, and
  * which algorithm to perform. There is no interaction with std I/O console
@@ -63,7 +62,7 @@ void Encryption(const std::string &algorithm){
 
 void CaeserCipherEncode(std::ifstream &input, std::ofstream &output)
 {
-    Caeser object(3);   // Caesar Class Object with key 3
+    Caeser object(23);   // Caesar Class Object with key 3
 
     object.Encrypt(input, output);
 }

@@ -1,6 +1,5 @@
 /**
  * @file utility.h
- * @author Aditya Kumar Singh
  * @brief   Header file, function defined in utility.cpp
  * @details For details information see utility.cpp
  * @bug No bug

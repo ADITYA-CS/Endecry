@@ -1,19 +1,7 @@
 
 #include "RC4.h"
 
-/*
-int main(){
-    fs::path p;
-    cout << ": ";
-    cin >> p;
-    string key;
-    cout << ": ";
-    cin >> key;
-    RC4 rc(key);
-    rc.Encrypt(p);
-    p += ".endecry";
-    rc.Decrypt(p);
-}*/
+
 
 RC4 :: RC4(string key){
     for(int i = 0; i  < 256; i++){

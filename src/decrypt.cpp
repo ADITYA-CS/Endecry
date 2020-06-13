@@ -1,6 +1,5 @@
 /**
  * @file decrypt.cpp
- * @author Aditya Kumar Singh
  * @brief   call specific decryption algorithm
  * @details Take input file address, out file address, and
  * which algorithm to perform. There is no interaction with std I/O console
@@ -66,7 +65,7 @@ void Decryption(const std::string &algorithm)
 
 void CaeserCipherDecode(std::ifstream &input, std::ofstream &output)
 {
-    Caeser object(3);   // Caesar Class Object with key 3
+    Caeser object(23);   // Caesar Class Object with key 3
 
     object.Decrypt(input, output);
 }

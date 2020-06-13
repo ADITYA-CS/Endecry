@@ -1,6 +1,5 @@
 /**
  * @file caesar.h
- * @author Aditya Kumar Singh
  * @brief   Header file, Contain class declaration for caesar cipher algorithm
  * @details Refer wikipedia/other source for more working of Caesar cipher
  * @warning Don't modify with prior knowledge

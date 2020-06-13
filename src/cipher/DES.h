@@ -1,6 +1,4 @@
-//
-// Created by the__martian on 6/4/20.
-//
+
 
 #ifndef ENDECRY_DES_H
 #define ENDECRY_DES_H
