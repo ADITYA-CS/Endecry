@@ -5,10 +5,10 @@ uint32_t FeistelNetwork::f(const uint32_t &R, const std::bitset<48> &key) {
   uint32_t higher_bits = 0;
   uint16_t lower_bits = 0;
   for (uint8_t i = 0; i < 32; i++) {
-    higher_bits |= (((R >> (uint8_t) (31 - E[i])) & (uint8_t) 1) ^ key[i]) << (uint8_t) (31 - i);
+    higher_bits |= (((R >> (31 - E[i])) & 1) ^ key[47 - i]) << (31 - i);
   }
   for (uint8_t i = 0; i < 16; i++) {
-    lower_bits |= (((R >> (uint8_t) (31 - E[32 + i])) & (uint8_t) 1) ^ key[32 + i]) << (uint8_t) (15 - i);
+    lower_bits |= (((R >> (31 - E[32 + i])) & 1) ^ key[47 - (32 + i)]) << (15 - i);
   }
 
   uint32_t pre_permutation = 0, result = 0;
@@ -34,8 +34,8 @@ uint32_t FeistelNetwork::f(const uint32_t &R, const std::bitset<48> &key) {
     pre_permutation |= S[7 - i / 6][r][c] << (uint8_t) 4 * (i / 11);
   }
 
-  for (int i = 0; i < 31; i++) {
-    result |= ((pre_permutation >> P[i]) & 1) << (31 - i);
+  for (int i = 0; i < 32; i++) {
+    result |= ((pre_permutation >> (31 - P[i])) & 1) << (31 - i);
   }
   return result;
 }
